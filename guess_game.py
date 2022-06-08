@@ -2,31 +2,36 @@ import random
 
 print("Created by Kacper Jedynak\n Github:https://github.com/ToxicPL\n Linkedin: https://www.linkedin.com/in/kacper-jedynak-a5ab91200/ ")
 print("----------------------------------------")
-top_range = input("Type a number: ")
-if top_range.isdigit():
-    top_range = int(top_range)
-    if top_range <= 0:
-        print("Please type a number larger than 0 next time")
-        quit()
-else:
-    print("Please type a number next time")
-    quit
 
-r_number = random.randrange(0, top_range)
+def guess_intiger(prompt):
+    while True:
+        intiger = input(prompt)
+        if intiger.isnumeric:
+            return int(intiger)
 
-while True:
-    user_guess = input("Make a guess. ")
-    if user_guess.isdigit():
-        user_guess = int(user_guess)
-    else:
-        print("Please type a number next time")
-        quit()
+def high_nuber(promp):
+    while True:
+        high = input(promp)
+        if high.isnumeric:
+            return int(high)
 
-    if user_guess == r_number:
-        print("You guessed it")
+
+high = high_nuber("Please type a number: ")
+
+answer: int = random.randint(1 , high)
+print(answer) #TODO: Testing
+print("Please guess betwen 1 and {}: ".format(high))
+guess = 0
+
+
+while guess != answer:
+    guess = guess_intiger(": ")
+    if guess == 0:
+        print("EXIT")
         break
-    else:
-        if user_guess > r_number:
-            print("You were above the number")
-        else:
-            print("You were below the number")
+    if guess == answer:
+        print("You got it :)")
+    if guess > answer:
+        print("Please guess lower")
+    elif guess < answer:
+        print("Please guess higher")
